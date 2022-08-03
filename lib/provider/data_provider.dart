@@ -9,6 +9,7 @@ class DataProvider with ChangeNotifier {
   String apiKey = '24c22b2ea7b1d7b215dd44922043e2d2';
   bool isLoading = false;
   List<Track> _trackList = [];
+  bool hasError = false;
 
   int get trackCount {
     return _trackList.length;
@@ -30,7 +31,8 @@ class DataProvider with ChangeNotifier {
       isLoading = false;
       notifyListeners();
     } catch (e) {
-      print('Some Errrrrrrrrrrrrrrrrrrrrrrrrrrrrrror Found $e');
+      isLoading = false;
+      hasError = true;
       notifyListeners();
     }
   }

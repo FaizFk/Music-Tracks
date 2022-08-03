@@ -27,13 +27,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Provider.of<DataProvider>(context).isLoading
-            ? Center(child: CircularProgressIndicator())
-            : ListView.builder(
-                itemCount: Provider.of<DataProvider>(context).trackCount,
-                itemBuilder: (context, index) {
-                  return TrackTile(trackList[index]);
-                }),
+        child: Provider.of<DataProvider>(context).hasError
+            ? Center(child: Text('No connection'))
+            : Provider.of<DataProvider>(context).isLoading
+                ? Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                    itemCount: Provider.of<DataProvider>(context).trackCount,
+                    itemBuilder: (context, index) {
+                      return TrackTile(trackList[index]);
+                    }),
       ),
     );
   }

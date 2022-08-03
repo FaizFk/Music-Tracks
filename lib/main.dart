@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => DataProvider(),
       child: MaterialApp(
+        theme: ThemeData.dark(),
         home: HomePage(),
       ),
     );
